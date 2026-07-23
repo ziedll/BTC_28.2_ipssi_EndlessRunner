@@ -1,5 +1,8 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -34,7 +37,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //tester si le jeu est fini +
+        if (_gameover && Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            //relancer le temps 
+            Time.timeScale = 1f;
+            //relancer le jeu
 
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
     public void AjouterPoint()
     {

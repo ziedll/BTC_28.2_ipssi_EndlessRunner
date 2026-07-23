@@ -156,3 +156,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piece
   vitesseRotation: 150
+  SonCoin: {fileID: 8300000, guid: 806986d783342894aad9ba3054a8effa, type: 3}

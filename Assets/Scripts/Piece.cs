@@ -3,6 +3,7 @@ using UnityEngine;
 public class Piece : MonoBehaviour
 {
     public float vitesseRotation = 150f;
+    public AudioClip SonCoin;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +23,11 @@ public class Piece : MonoBehaviour
             return;
         }
         GameManager.instance.AjouterPoint();
+
+        //jouer du son
+
+        AudioSource.PlayClipAtPoint(SonCoin, transform.position);
+        //detruire la piece
 
         Destroy(gameObject);
     }
