@@ -6,6 +6,9 @@ public class Deplacement : MonoBehaviour
 {
     [Header("Vitesse")]
     public float vitesseAvance = 10f;
+    public float vitesseMax = 30f;
+    public float acceleration = 0.5f;
+
     public float vitesseLaterale = 8f;
 
     private float _velocityY = 0f;
@@ -29,6 +32,11 @@ public class Deplacement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //vitesse progressive
+        if (vitesseAvance <vitesseMax)
+        {
+            vitesseAvance += acceleration * Time.deltaTime;
+        }
         // nous donne les touche clavier touché a l'instant t
         var kb = Keyboard.current;
 
@@ -82,7 +90,7 @@ public class Deplacement : MonoBehaviour
         {
             _velocityY -= 20 * Time.deltaTime;
         }
-        _cc.Move(new Vector3(deltaX, 0f, vitesseAvance * Time.deltaTime));
+        _cc.Move(new Vector3(deltaX, _velocityY *  Time.deltaTime, vitesseAvance * Time.deltaTime));
 
 
     }

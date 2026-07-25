@@ -19,6 +19,9 @@ public class Spawner : MonoBehaviour
     private float _prochainZ = 20f;
 
     private float _ObstacleprochainZ = 40f;
+
+    public float espacementObstacleMin = 5f;
+    public float espacementObstacleMax = 10f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,20 +43,24 @@ public class Spawner : MonoBehaviour
         if (_joueur.position.z + distanceCreation >= _ObstacleprochainZ)
         {
             SpawnObstacle();
-
-            _ObstacleprochainZ += espacement;
+            float espacementAleatoire = Random.Range(espacementObstacleMin, espacementObstacleMax);
+            _ObstacleprochainZ += espacementAleatoire;
         }
     }
 
     void Spawn()
     {
+        float tiers = largeurCouloir / 3f;
         //choisir un x aleatorie dans la limite du couloir 
 
-        float x = Random.Range(-largeurCouloir, largeurCouloir);
+        //spawner la piece aléatoirement
+        float xGauche = Random.Range(-largeurCouloir, -tiers);
+        Instantiate(prefabPiece, new Vector3(xGauche, 1.5f, _prochainZ), Quaternion.Euler(90f, 0f, 0f));
+        float xDroite = Random.Range(tiers, largeurCouloir);
+        Instantiate(prefabPiece, new Vector3(xDroite, 1.5f, _prochainZ), Quaternion.Euler(90f, 0f, 0f));
+        float xCentre = Random.Range(-tiers, tiers);
+        Instantiate(prefabPiece, new Vector3(xCentre, 1.5f, _prochainZ), Quaternion.Euler(90f, 0f, 0f));
 
-        //spawner la piece
-
-        Instantiate(prefabPiece, new Vector3(x, 1.5f, _prochainZ), Quaternion.Euler(90f, 0f, 0f));
     }
     void SpawnObstacle()
     {

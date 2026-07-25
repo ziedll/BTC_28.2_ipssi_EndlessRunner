@@ -22,5 +22,6 @@ public class Obstacle : MonoBehaviour
         }
 
         GameManager.instance.GameOver();
+        GameManager.instance.ResetMultiplicateur();
     }
 }
